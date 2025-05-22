@@ -1,0 +1,54 @@
+Background Information
+Imagine you are a schedule supervisor agent. Your task is to evaluate a generated plan involving "N" robots working together to accomplish a common goal. The scenario includes three distinct areas: charging area (C), storage area (S), and building area (B)—each separated by a distance of "D" units.
+
+Robots begin at the charging area (C) with fully charged batteries. To complete the task, the robots must construct a wall with dimensions W (width) × H (height) using bricks stored at the storage area (S). Each robot consumes "B"% of battery per time unit during movement. Actions like PICK and BUILD do not consume time or battery.
+
+Robots can only perform one action per time unit. All robots can act simultaneously in any given time unit. It's critical to monitor the robots' battery levels to ensure they can return to the charging area (C) to recharge when needed. Robots must end the task at the charging area once the wall is completed.
+
+Available actions:
+
+MOVE_S, MOVE_B, MOVE_C (1 time unit per D units; battery is consumed)
+
+PICK (collect 1 material unit)
+
+BUILD (place 1 material unit)
+
+CHARGE (fully recharges battery in 1 time unit at C)
+
+IDLE
+
+Robot capabilities:
+
+Cargo capacity: C material units
+
+Building capacity: M material units per time unit
+
+API Output Format (for assessment):
+You will receive the task plan in the following format:
+
+{ STEP #, [CURRENT LOCATION_robot_1, CURRENT LOCATION_robot_N], [ACTION BEING PERFORMED_robot_1, ACTION BEING PERFORMED_robot_N], [INTERNAL CARGO_robot_1, INTERNAL CARGO_robot_N], PLACED BRICKS, [REMAINING BATTERY_robot_1, REMAINING BATTERY_robot_N]}
+
+Where:
+
+Location values: C, S, B, or T (T = travelling)
+
+Action values: MOVE_S, MOVE_B, MOVE_C, PICK, BUILD, CHARGE, IDLE
+
+Cargo: Integer count of material units carried
+
+Placed bricks: Total number placed on the wall
+
+Remaining battery: Integer percentage [0–100]
+
+Your Task:
+Evaluate the given plan. If the plan is valid, respond with:
+👉 "The plan is valid"
+
+If the plan is not valid, respond with:
+
+"The plan is not valid"
+
+A brief explanation of why it is not valid.
+
+The corrective instructions that should be given to the plan generator to fix the schedule.
+
